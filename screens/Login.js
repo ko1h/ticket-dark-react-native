@@ -9,18 +9,49 @@ export default class Login extends React.Component {
   state = {
   email: VALID_EMAIL,
   password: VALID_PASSWORD,
+  errors: [],
+  loading: false,
+}
+
+handleLogin() {
+  const { navigation } = this.props;
+  const { email, password } = this.state;
+  const errors = [];
+
+  Keyboard.dismiss();
+  this.setState({ loading: true });
+
+  // check with backend API or with some static data
+  if (email !== VALID_EMAIL) {
+    errors.push('email');
+  }
+  if (password !== VALID_PASSWORD) {
+    errors.push('password');
   }
 
-  _name = null;
+  this.setState({ errors, loading: false });
 
-  render(props) {
+  if (!errors.length) {
+    navigation.navigate("Browse");
+  }
+}
+
+render() {
+  const { navigation } = this.props;
+  const { loading, errors } = this.state;
+  const hasErrors = key => errors.includes(key) ? styles.hasErrors : null;
+
     return (
-      <View>
+      <View style={styles.login}>
         <Text>Login</Text>
         <TextInput
-          id='name'
-          placeholder='Enter Your Name'
-          ref={(input) => {_name = input;}}/>
+          id='email'
+          placeholder='Enter Your Email'
+          ref={(input) => {_email = input;}}/>
+          <TextInput
+            id='password'
+            placeholder='Enter Your Password'
+            ref={(input) => {_password = input;}}/>
         <Button color="#333333"
           title= "ENTER"
           onPress={this.handleLoginSubmission} />
@@ -28,3 +59,11 @@ export default class Login extends React.Component {
     )
   }
 }
+
+
+const styles = StyleSheet.create({
+  login: {
+    flex: 1,
+    justifyContent: 'center',
+ }
+})

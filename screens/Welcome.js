@@ -1,12 +1,36 @@
 import React, { Component } from 'react'
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, ScrollView, View, Text} from 'react-native';
 
 
 export default class Welcome extends React.Component {
+
   render() {
     return (
-      <View>
-        <Text>Hello</Text>
+      <View style = {styles.container}>
+        <Text>Ticket Dark.</Text>
+
+        <Button color="#FFFFFF"
+            title="Login"
+            onPress={() => {
+              this.props.navigation.dispatch(StackActions.reset({
+                index: 0,
+                actions: [
+                  NavigationActions.navigate({ routeName: 'Login' })
+                ],
+              }))
+            }}
+          />
+          <Button color="#FFFFFF"
+              title="Sign In"
+              onPress={() => {
+                this.props.navigation.dispatch(StackActions.reset({
+                  index: 0,
+                  actions: [
+                    NavigationActions.navigate({ routeName: 'Sign In' })
+                  ],
+                }))
+              }}
+            />
       </View>
     );
   }

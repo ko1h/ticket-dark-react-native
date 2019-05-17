@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react'
 import { StyleSheet, Text, View } from 'react-native';
-import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
+
 
 export default class Welcome extends React.Component {
   render() {
@@ -11,3 +11,10 @@ export default class Welcome extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'green',
+    width: '40%'
+  }
+})

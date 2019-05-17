@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Button, StyleSheet, ScrollView, View, Text} from 'react-native';
+import { createAppContainer, createStackNavigator, StackActions, NavigationActions } from 'react-navigation';
 
 
 export default class Welcome extends React.Component {
